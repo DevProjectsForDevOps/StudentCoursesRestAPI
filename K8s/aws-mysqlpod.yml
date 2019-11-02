@@ -10,8 +10,7 @@ metadata:
         image: 798279872530.dkr.ecr.us-west-2.amazonaws.com/mysql:5.7
         volumeMounts:
           - mountPath: "/var/lib/mysql"
-            persistentVolumeClaim:
-              claimName: ebs-gp2
+            name: ebs-gp2
         env:
           - name: MYSQL_DATABASE
             value: 'test'
@@ -25,4 +24,9 @@ metadata:
           - name: dbport
             containerPort: 3306
             protocol: TCP
+    volumes:
+      - name: mysql-vol
+        persistentVolumeClaim:
+          claimName: ebs-gp2
+
 
