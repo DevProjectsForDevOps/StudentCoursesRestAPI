@@ -4,29 +4,29 @@ metadata:
   name: mysql-pod
   labels:
     app: mysql
-  spec:
-    containers:
-      - name: mysql
-        image: 798279872530.dkr.ecr.us-west-2.amazonaws.com/mysql:5.7
-        volumeMounts:
-          - mountPath: "/var/lib/mysql"
-            name: ebs-gp2
-        env:
-          - name: MYSQL_DATABASE
-            value: 'test'
-          - name: MYSQL_USER
-            value: 'directdevops'
-          - name: MYSQL_PASSWORD
-            value: 'directdevops'
-          - name: MYSQL_ROOT_PASSWORD
-            value: 'password'
-        ports:
-          - name: dbport
-            containerPort: 3306
-            protocol: TCP
-    volumes:
-      - name: mysql-vol
-        persistentVolumeClaim:
-          claimName: ebs-gp2
+spec:
+  containers:
+    - name: mysql
+      image: 798279872530.dkr.ecr.us-west-2.amazonaws.com/mysql:5.7
+      volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: ebs-gp2
+      env:
+        - name: MYSQL_DATABASE
+          value: 'test'
+        - name: MYSQL_USER
+          value: 'directdevops'
+        - name: MYSQL_PASSWORD
+          value: 'directdevops'
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'password'
+      ports:
+        - name: dbport
+          containerPort: 3306
+          protocol: TCP
+  volumes:
+    - name: mysql-vol
+      persistentVolumeClaim:
+        claimName: ebs-gp2
 
 
