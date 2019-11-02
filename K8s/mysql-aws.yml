@@ -1,0 +1,79 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+  labels:
+    app: mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp2
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-gp2
+  labels:
+    app: mysql
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: 798279872530.dkr.ecr.us-west-2.amazonaws.com/mysql:5.6
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: mysql-vol
+          env:
+            - name: MYSQL_DATABASE
+              value: 'test'
+            - name: MYSQL_USER
+              value: 'directdevops'
+            - name: MYSQL_PASSWORD
+              value: 'directdevops'
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'password'
+          ports:
+            - name: dbport
+              containerPort: 3306
+              protocol: TCP
+      volumes:
+        - name: mysql-vol
+          persistentVolumeClaim:
+            claimName: ebs-gp2
