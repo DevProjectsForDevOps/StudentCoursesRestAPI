@@ -18,28 +18,28 @@ metadata:
   name: studentcourse-deploy
   labels:
     app: studentscourse
-  spec:
-    replicas: 5
-    selector:
-      matchLabels:
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: studentscourse
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
         app: studentscourse
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxUnavailable: 25%
-        maxSurge: 1
-    template:
-      metadata:
-        labels:
-          app: studentscourse
-      spec:
-        containers:
-          - image: 798279872530.dkr.ecr.us-west-2.amazonaws.com/studentcourserestservice
-            name: studentscourse
-            env:
-              - name: MYSQL_SERVER
-                value: mysql-svc
-            ports:
-              - containerPort: 8080
-                name: flaskport
+    spec:
+      containers:
+        - image: 798279872530.dkr.ecr.us-west-2.amazonaws.com/studentcourserestservice
+          name: studentscourse
+          env:
+            - name: MYSQL_SERVER
+              value: mysql-svc
+          ports:
+            - containerPort: 8080
+              name: flaskport
 
