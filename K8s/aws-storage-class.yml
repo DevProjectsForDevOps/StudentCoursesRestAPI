@@ -8,4 +8,3 @@ provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2
   fsType: ext4
-  zones: us-west-2a, us-west-2b, us-west-2c

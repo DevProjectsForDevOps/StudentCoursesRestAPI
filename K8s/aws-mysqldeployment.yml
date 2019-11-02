@@ -9,9 +9,7 @@ spec:
     matchLabels:
       app: mysql
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+    type: Recreate
   template:
     metadata:
       labels:
