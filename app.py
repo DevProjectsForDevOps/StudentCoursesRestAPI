@@ -18,7 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.config['SQLALCHEMY_ECHO'] = True
 db.init_app(app)
 
-api = Api(app, version='0.1.0', title='Test Service', description='Test Service for k8s')
+api = Api(app, version='0.1.1', title='Testing Service', description='Test Service for k8s')
 
 ns = api.namespace('course', description="Courses Namespace")
 course_parser = utils.get_course_parser()
