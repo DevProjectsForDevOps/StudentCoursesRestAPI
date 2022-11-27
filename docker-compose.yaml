@@ -25,6 +25,13 @@ services:
       - MYSQL_DATABASE=test
       - MYSQL_USER=directdevops
       - MYSQL_PASSWORD=directdevops
+    volumes:
+      - type: volume
+        source: students-db
+        target: /var/lib/mysql
+
+volumes:
+  students-db:
 
 networks:
   students-net:
