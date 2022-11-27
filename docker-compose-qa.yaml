@@ -9,7 +9,7 @@ services:
       - students-private-net-qa
     ports:
       - target: 8080
-        published: 8080
+        published: 8090
         protocol: tcp
         mode: host
     environment:
