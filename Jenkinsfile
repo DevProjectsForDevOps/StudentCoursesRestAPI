@@ -10,13 +10,14 @@ pipeline {
         }
         stage('build and deploy') {
             steps {
-                sh 'docker image build -t shaikkhajaibrahim/courses:latest .'
-                sh 'docker image push shaikkhajaibrahim/courses:latest'
+                sh "docker image build -t shaikkhajaibrahim/courses:develop-$env.BUILD_ID ."
+                sh 'docker image push shaikkhajaibrahim/courses:develop-$env.BUILD_ID'
             }
         }
         stage('deploy') {
             steps {
-                sh 'kubectl apply -f deployments/courses/deployments.yaml'
+                sh "cd deployments/courses/overlays/develop && kustomize edit set image courses=shaikkhajaibrahim/courses:develop-$env.BUILD_ID"
+                sh 'kubectl apply -k .'
             }
         }
 
