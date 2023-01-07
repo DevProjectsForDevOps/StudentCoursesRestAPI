@@ -1,7 +1,6 @@
 ---
 resources:
 - ../../base
-namespace: qa
 namePrefix: qa-
 images:
   - name: courses

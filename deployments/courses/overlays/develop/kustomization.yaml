@@ -1,6 +1,5 @@
 resources:
 - ../../base
-namespace: develop
 namePrefix: develop-
 images:
 - name: courses
