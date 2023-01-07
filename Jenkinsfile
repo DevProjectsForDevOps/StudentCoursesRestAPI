@@ -11,7 +11,7 @@ pipeline {
         stage('build and deploy') {
             steps {
                 sh "docker image build -t shaikkhajaibrahim/courses:develop-$env.BUILD_ID ."
-                sh 'docker image push shaikkhajaibrahim/courses:develop-$env.BUILD_ID'
+                sh "docker image push shaikkhajaibrahim/courses:develop-$env.BUILD_ID"
             }
         }
         stage('deploy') {
