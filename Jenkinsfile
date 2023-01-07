@@ -14,7 +14,11 @@ pipeline {
                 sh 'docker image push shaikkhajaibrahim/courses:latest'
             }
         }
-
+        stage('deploy') {
+            steps {
+                sh 'kubectl apply -f deployments/courses/deployments.yaml'
+            }
+        }
 
     }
 }
