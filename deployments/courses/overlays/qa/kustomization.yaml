@@ -1,0 +1,9 @@
+---
+resources:
+- ../../base
+namespace: qa
+namePrefix: qa-
+images:
+  - name: courses
+    newName: shaikkhajaibrahim/courses
+    newTag: qa-latest
