@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: courses-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: courses
+  ports:
+    - name: courses-lb
+      port: 8080

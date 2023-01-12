@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: studentsapi-deployment
+spec:
+  minReadySeconds: 5
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: courses
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  template:
+    metadata:
+      name: cousrses-pod
+      labels:
+        app: courses
+        version: "1.0"
+    spec:
+      containers:
+        - name: studentsapi-container
+          image: ansziyad5/restapi:1.0
+          livenessProbe:
+            initialDelaySeconds: 1
+            httpGet:
+              host:
+              port: 8080
+              scheme: HTTP
+              path: /
+          ports:
+            - containerPort: 8080
+              protocol: "TCP"
+          volumeMounts:
+            - name: courses-vol
+              mountPath: /var/lib/mysq
+    volumes:
+      - name: mysql-vol
+        persistentVolumeClaim:
+          claimName: pv-claim
