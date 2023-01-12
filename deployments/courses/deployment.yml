@@ -36,7 +36,7 @@ spec:
           volumeMounts:
             - name: courses-vol
               mountPath: /var/lib/mysq
-    volumes:
-      - name: mysql-vol
-        persistentVolumeClaim:
-          claimName: pv-claim
+      volumes:
+        - name: mysql-vol
+          persistentVolumeClaim:
+            claimName: pv-claim
