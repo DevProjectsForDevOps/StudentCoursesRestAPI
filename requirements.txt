@@ -15,5 +15,5 @@ pyrsistent==0.15.5
 pytz==2019.3
 six==1.12.0
 SQLAlchemy==1.3.10
-Werkzeug==0.16.0
+Werkzeug==2.2.3
 zipp==0.6.0
