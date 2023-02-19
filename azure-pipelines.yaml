@@ -38,9 +38,9 @@ stages:
               command: 'apply'
               useConfigurationFile: true
               configurationType: configuration
-              configuration: '$(System.ArtifactStagingDirectory)/manifests/mysql-deploy.yaml'
-          - script: 'ls $(System.ArtifactStagingDirectory)'
-          - script: 'ls $(System.ArtifactStagingDirectory)/manifests'
+              configuration: '$(System.ArtifactsDirectory)/manifests/mysql-deploy.yaml'
+          - script: 'ls $(System.ArtifactsDirectory)'
+          - script: 'ls $(System.ArtifactsDirectory)/manifests'
           - task: Kubernetes@1
             inputs:
               connectionType: 'Kubernetes Service Connection'
@@ -49,6 +49,6 @@ stages:
               command: 'apply'
               useConfigurationFile: true
               configurationType: configuration
-              configuration: '$(System.ArtifactStagingDirectory)/manifests/scr-deploy.yaml'
+              configuration: '$(System.ArtifactsDirectory)/manifests/scr-deploy.yaml'
               
               
