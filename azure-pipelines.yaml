@@ -18,4 +18,4 @@ stages:
               containerRegistry: 'Docker'
               repository: 'shaikkhajaibrahim/azdevopsstudentsregister'
               command: 'buildAndPush'
-              tags: "$(Build.BuildId)"
+              tags: "latest"
