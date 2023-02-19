@@ -26,6 +26,10 @@ stages:
       - job: 'qadeploy'
         displayName: 'Deploy to QA'
         steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'manifests'
+              downloadPath: '$(System.ArtifactsDirectory)/manifests'
           - task: Kubernetes@1
             inputs:
               connectionType: 'Kubernetes Service Connection'
