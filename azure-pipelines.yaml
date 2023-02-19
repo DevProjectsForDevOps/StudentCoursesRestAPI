@@ -23,3 +23,26 @@ stages:
             inputs:
               artifactName: 'manifests'
               path: 'kubernetes'
+      - job: 'qadeploy'
+        displayName: 'Deploy to QA'
+        steps:
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'aksfromreleases'
+              namespace: default
+              command: 'apply'
+              useConfigurationFile: true
+              configurationType: configuration
+              configuration: '$(System.DefaultWorkingDirectory)/_StudentsCourseRegister/manifests/mysql-deploy.yaml'
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'aksfromreleases'
+              namespace: default
+              command: 'apply'
+              useConfigurationFile: true
+              configurationType: configuration
+              configuration: '$(System.DefaultWorkingDirectory)/_StudentsCourseRegister/manifests/scr-deploy.yaml'
+              
+              
