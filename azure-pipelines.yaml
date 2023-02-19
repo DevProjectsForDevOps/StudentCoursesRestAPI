@@ -34,7 +34,7 @@ stages:
               command: 'apply'
               useConfigurationFile: true
               configurationType: configuration
-              configuration: '$(System.DefaultWorkingDirectory)/_StudentsCourseRegister/manifests/mysql-deploy.yaml'
+              configuration: '$(System.DefaultWorkingDirectory)/_StudentsCourseRegister/kubernetes/mysql-deploy.yaml'
           - task: Kubernetes@1
             inputs:
               connectionType: 'Kubernetes Service Connection'
@@ -43,6 +43,6 @@ stages:
               command: 'apply'
               useConfigurationFile: true
               configurationType: configuration
-              configuration: '$(System.DefaultWorkingDirectory)/_StudentsCourseRegister/manifests/scr-deploy.yaml'
+              configuration: '$(System.DefaultWorkingDirectory)/_StudentsCourseRegister/kubernetes/scr-deploy.yaml'
               
               
