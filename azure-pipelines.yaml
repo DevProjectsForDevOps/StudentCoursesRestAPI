@@ -1,0 +1,22 @@
+---
+pool:
+  name: 'Azure Pipelines'
+  vmImage: 'ubuntu-default'
+
+trigger:
+  - developer
+
+stages:
+  - stage: 'buildnpush'
+    displayName: 'Build docker image and push'
+    jobs:
+      - job: 'buildnpush'
+        displayName: 'Build docker image and push to registry'
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'Docker'
+              repository: 'shaikkhajaibrahim/azdevopsstudentsregister'
+              command: 'buildAndPush'
+              tags: "$(Build.BuildId)"
+              
