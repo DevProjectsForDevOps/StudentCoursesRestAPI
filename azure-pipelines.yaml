@@ -1,7 +1,7 @@
 ---
 pool:
   name: 'Azure Pipelines'
-  vmImage: 'ubuntu-default'
+  vmImage: 'ubuntu-latest'
 
 trigger:
   - developer
@@ -19,4 +19,3 @@ stages:
               repository: 'shaikkhajaibrahim/azdevopsstudentsregister'
               command: 'buildAndPush'
               tags: "$(Build.BuildId)"
-              
