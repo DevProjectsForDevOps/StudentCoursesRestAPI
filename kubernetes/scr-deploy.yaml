@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentcourse-svc
+  labels:
+    app: studentscourse
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: studentscourse
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentcourse-deploy
+  labels:
+    app: studentscourse
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: studentscourse
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: studentscourse
+    spec:
+      containers:
+        - image: shaikkhajaibrahim/azdevopsstudentsregister:latest
+          name: studentscourse
+          env:
+            - name: MYSQL_SERVER
+              value: mysql-svc
+          ports:
+            - containerPort: 8080
+              name: flaskport
