@@ -25,6 +25,7 @@ stages:
               path: 'kubernetes'
       - job: 'qadeploy'
         displayName: 'Deploy to QA'
+        dependsOn: 'buildnpush'
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
