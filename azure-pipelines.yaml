@@ -19,3 +19,7 @@ stages:
               repository: 'shaikkhajaibrahim/azdevopsstudentsregister'
               command: 'buildAndPush'
               tags: "latest"
+          - task: PublishPipelineArtifact@1
+            inputs:
+              artifactName: 'manifests'
+              path: 'kubernetes'
