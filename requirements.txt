@@ -1,7 +1,7 @@
 aniso8601==8.0.0
 attrs==19.3.0
 Click==7.0
-Flask==1.1.1
+Flask==2.3.2
 flask-restplus==0.13.0
 Flask-SQLAlchemy==2.4.1
 importlib-metadata==0.23
